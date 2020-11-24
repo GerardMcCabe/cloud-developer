@@ -8,6 +8,7 @@ import { Car, cars as cars_list } from './cars';
 
   //Create an express applicaiton
   const app = express(); 
+  
   //default port to listen
   const port = 8082; 
   
@@ -44,6 +45,10 @@ import { Car, cars as cars_list } from './cars';
     if ( !name ) {
       return res.status(400)
                 .send(`name is required`);
+    }
+
+    if (name == "ger"){
+      return res.status(200).send("Hey dude!");
     }
 
     return res.status(200)
