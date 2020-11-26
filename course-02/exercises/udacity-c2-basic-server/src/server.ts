@@ -100,6 +100,22 @@ import { Car, cars as cars_list } from './cars';
   // @TODO Add an endpoint to get a specific car
   // it should require id
   // it should fail gracefully if no matching car is found
+  app.get( "/car/", ( req: Request, res: Response ) => {
+    let { id } = req.query;
+
+    if ( !id ) {
+      return res.status(400)
+                .send(`id is required`);
+    }
+
+    for(let car of cars_list){
+      if(car.id == id){
+        return res.status(200).send(car);
+      }
+    }
+
+    return res.status(400).send("car id not found");
+  } );
 
   /// @TODO Add an endpoint to post a new car to our list
   // it should require id, type, model, and cost
